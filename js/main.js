@@ -85,6 +85,15 @@ form.addEventListener("submit", function (event) {
 //   });
 // }
 
+//Explain this below
+// function test() {
+
+// }
+// var test2 = function(x) { return x }
+// var test3 = (x) => {
+//     return x;
+// }
+
 //Third Method
 const validateCondition = {
   0: (value) => value.length > 3,
