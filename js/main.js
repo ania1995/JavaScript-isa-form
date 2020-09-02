@@ -22,7 +22,8 @@ form.addEventListener("submit", function (event) {
   }
 });
 
-//First Method
+// First Method
+
 // nameValue.addEventListener("input", function () {
 //   if (nameValue.value.length < 3) {
 //     console.log(`Pole niepoprawne`);
@@ -39,15 +40,17 @@ form.addEventListener("submit", function (event) {
 //     console.log(`Pole poprawne`);
 //   }
 // });
+
+// const regExPostCode = /\d{2}-\d{3}/; //dopisać do poniższego kodu
 // codeValue.addEventListener("input", function () {
-//   if (codeValue.value.length != 6) {
+//   if (codeValue.value.length != 6  ) { //dodać (codeValue.value.indexOf('-')!= 2)
 //     console.log(`Pole niepoprawne`);
 //   } else {
 //     console.log(`Pole poprawne`);
 //   }
 // });
 
-//Second method
+// Second method
 // for (let i = 0; i < 3; i++) {
 //   form[i].addEventListener("input", function () {
 //     if (form[i].value.length < 3) {
