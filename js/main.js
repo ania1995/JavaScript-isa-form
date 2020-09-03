@@ -122,7 +122,9 @@ for (let i = 0; i < 4; i++) {
   form[i].value = window.localStorage.getItem(form[i].name);
 }
 
-form.addEventListener("submit", function () {
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  feedback.innerHTML += `<div>${nameValue.value} - ${cityValue.value} - ${codeValue.value} - ${emailValue.value}</div>`;
   for (let i = 0; i < 4; i++) {
     window.localStorage.removeItem(form[i].name);
   }
