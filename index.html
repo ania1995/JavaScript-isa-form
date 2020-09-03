@@ -14,10 +14,19 @@
       .red {
         color: red;
       }
+
+      .nonshow {
+        opacity: 0;
+      }
+      .show {
+        opacity: 1;
+        transition: opacity 500ms linear;
+      }
     </style>
   </head>
 
   <body>
+    <h1 class="title nonshow">Strona główna</h1>
     <form name="peopleForm" id="peopleForm">
       <input type="text" name="name" placeholder="Imię i nazwisko" />
       <input type="text" name="city" placeholder="Miasto" />

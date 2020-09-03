@@ -7,10 +7,16 @@ const buttonSubmit = form["submit"];
 const feedback = document.querySelector(".results");
 const regExPostCode = /\d{2}-\d{3}/;
 const regExEmail = /^\S+@\S+\.\S+$/;
+const titleName = document.querySelector(".title");
 
 function displayCurrentState() {
   console.log(`aktualny stan formularza ${Input.value}`);
 }
+
+setTimeout(function () {
+  titleName.classList.remove("nonshow");
+  titleName.classList.add("show");
+}, 3000);
 
 // form.addEventListener("submit", function (event) {
 //   event.preventDefault();
@@ -125,10 +131,13 @@ for (let i = 0; i < 4; i++) {
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
-  feedback.innerHTML += `<div>${nameValue.value} - ${cityValue.value} - ${codeValue.value} - ${emailValue.value}</div>`;
+  setTimeout(function () {
+    feedback.innerHTML += `<div>${nameValue.value} - ${cityValue.value} - ${codeValue.value} - ${emailValue.value}</div>`;
+    for (let i = 0; i < 4; i++) {
+      window.localStorage.removeItem(form[i].name);
+      form[i].value = "";
+    }
+  }, 3000);
+
   window.localStorage.setItem("results", feedback.innerHTML);
-  for (let i = 0; i < 4; i++) {
-    window.localStorage.removeItem(form[i].name);
-    form[i].value = "";
-  }
 });
