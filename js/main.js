@@ -103,6 +103,9 @@ const validateCondition = {
   3: (value) => regExEmail.test(value),
 };
 
+const resultsLs = window.localStorage.getItem("results");
+feedback.innerHTML = resultsLs;
+
 for (let i = 0; i < 4; i++) {
   form[i].addEventListener("input", function () {
     if (validateCondition[i](form[i].value)) {
@@ -116,8 +119,6 @@ for (let i = 0; i < 4; i++) {
   });
 }
 
-window.localStorage.setItem("testowy", "testowa wartość");
-
 for (let i = 0; i < 4; i++) {
   form[i].value = window.localStorage.getItem(form[i].name);
 }
@@ -125,7 +126,9 @@ for (let i = 0; i < 4; i++) {
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   feedback.innerHTML += `<div>${nameValue.value} - ${cityValue.value} - ${codeValue.value} - ${emailValue.value}</div>`;
+  window.localStorage.setItem("results", feedback.innerHTML);
   for (let i = 0; i < 4; i++) {
     window.localStorage.removeItem(form[i].name);
+    form[i].value = "";
   }
 });
