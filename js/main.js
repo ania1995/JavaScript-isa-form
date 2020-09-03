@@ -3,6 +3,7 @@ const nameValue = form["name"];
 const cityValue = form["city"];
 const codeValue = form["post-code"];
 const emailValue = form["email"];
+const buttonSubmit = form["submit"];
 const feedback = document.querySelector(".results");
 const regExPostCode = /\d{2}-\d{3}/;
 const regExEmail = /^\S+@\S+\.\S+$/;
@@ -11,24 +12,24 @@ function displayCurrentState() {
   console.log(`aktualny stan formularza ${Input.value}`);
 }
 
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
-  const submitCondition =
-    nameValue.value.length > 3 &&
-    cityValue.value.length > 3 &&
-    codeValue.value.length === 6;
+// form.addEventListener("submit", function (event) {
+//   event.preventDefault();
+//   const submitCondition =
+//     nameValue.value.length > 3 &&
+//     cityValue.value.length > 3 &&
+//     codeValue.value.length === 6;
 
-  if (submitCondition) {
-    console.log(
-      nameValue.value,
-      cityValue.value,
-      codeValue.value,
-      emailValue.value
-    );
-  } else {
-    alert(`Uzupełnij forularz`);
-  }
-});
+//   if (submitCondition) {
+//     console.log(
+//       nameValue.value,
+//       cityValue.value,
+//       codeValue.value,
+//       emailValue.value
+//     );
+//   } else {
+//     alert(`Uzupełnij forularz`);
+//   }
+// });
 
 // // First Method
 // nameValue.addEventListener("input", function () {
@@ -102,14 +103,43 @@ const validateCondition = {
   3: (value) => regExEmail.test(value),
 };
 
+const buttonValidate = {
+  0: false,
+  1: false,
+  2: false,
+  3: false,
+};
+
 for (let i = 0; i < 4; i++) {
   form[i].addEventListener("input", function () {
     if (validateCondition[i](form[i].value)) {
+      buttonValidate[i] = true;
       console.log(`Pole poprawne`);
       form[i].classList.remove("red");
+      if (
+        buttonValidate[0] &&
+        buttonValidate[1] &&
+        buttonValidate[2] &&
+        buttonValidate[3]
+      ) {
+        buttonSubmit.disabled = false;
+      } else {
+        buttonSubmit.disabled = true;
+      }
     } else {
+      buttonValidate[i] = false;
       console.log(`Pole niepoprawne`);
       form[i].classList.add("red");
+      if (
+        !buttonValidate[0] ||
+        !buttonValidate[1] ||
+        !buttonValidate[2] ||
+        !buttonValidate[3]
+      ) {
+        buttonSubmit.disabled = true;
+      } else {
+        buttonSubmit.disabled = false;
+      }
     }
   });
 }
