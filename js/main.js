@@ -103,43 +103,27 @@ const validateCondition = {
   3: (value) => regExEmail.test(value),
 };
 
-const buttonValidate = {
-  0: false,
-  1: false,
-  2: false,
-  3: false,
-};
-
 for (let i = 0; i < 4; i++) {
   form[i].addEventListener("input", function () {
     if (validateCondition[i](form[i].value)) {
-      buttonValidate[i] = true;
+      window.localStorage.setItem(form[i].name, form[i].value);
       console.log(`Pole poprawne`);
       form[i].classList.remove("red");
-      if (
-        buttonValidate[0] &&
-        buttonValidate[1] &&
-        buttonValidate[2] &&
-        buttonValidate[3]
-      ) {
-        buttonSubmit.disabled = false;
-      } else {
-        buttonSubmit.disabled = true;
-      }
     } else {
-      buttonValidate[i] = false;
       console.log(`Pole niepoprawne`);
       form[i].classList.add("red");
-      if (
-        !buttonValidate[0] ||
-        !buttonValidate[1] ||
-        !buttonValidate[2] ||
-        !buttonValidate[3]
-      ) {
-        buttonSubmit.disabled = true;
-      } else {
-        buttonSubmit.disabled = false;
-      }
     }
   });
 }
+
+window.localStorage.setItem("testowy", "testowa wartość");
+
+for (let i = 0; i < 4; i++) {
+  form[i].value = window.localStorage.getItem(form[i].name);
+}
+
+form.addEventListener("submit", function () {
+  for (let i = 0; i < 4; i++) {
+    window.localStorage.removeItem(form[i].name);
+  }
+});
