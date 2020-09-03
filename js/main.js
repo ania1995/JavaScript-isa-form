@@ -8,6 +8,7 @@ const feedback = document.querySelector(".results");
 const regExPostCode = /\d{2}-\d{3}/;
 const regExEmail = /^\S+@\S+\.\S+$/;
 const titleName = document.querySelector(".title");
+const slider = document.querySelector(".slider");
 
 function displayCurrentState() {
   console.log(`aktualny stan formularza ${Input.value}`);
@@ -17,6 +18,25 @@ setTimeout(function () {
   titleName.classList.remove("nonshow");
   titleName.classList.add("show");
 }, 3000);
+
+let activeSlider = 0;
+
+setInterval(function () {
+  if (activeSlider < slider.children.length - 1) {
+    slider.children[activeSlider].classList.remove("active");
+    slider.children[activeSlider + 1].classList.add("active");
+    activeSlider++;
+  } else {
+    slider.children[activeSlider].classList.remove("active");
+    slider.children[0].classList.add("active");
+    activeSlider = 0;
+  }
+}, 2000);
+
+// setTimeout( =>{
+// titleName.classList.remove("nonshow");
+// titleName.classList.add("show");
+//}, 3000);
 
 // form.addEventListener("submit", function (event) {
 //   event.preventDefault();
@@ -141,3 +161,29 @@ form.addEventListener("submit", function (event) {
 
   window.localStorage.setItem("results", feedback.innerHTML);
 });
+
+//FAQ
+
+// const faqContainer = document.querySelector(".faq");
+// faqContainer.innerHTML = FAQLs;
+const FAQLs = window.localStorage.getItem("faqContainer");
+const faqItems = document.querySelectorAll(".faqItem");
+const faqItem = document.querySelector(".faqItem");
+
+faqItem.addEventListener("click", (event) => {
+  console.log(event.currentTarget);
+  console.dir(event);
+});
+
+for (let i = 0; i < faqItems.length; i++) {
+  faqItems[i].addEventListener("click", (event) => {
+    if (faqItems[i].querySelector("p").classList.contains("nondisplay")) {
+      faqItems[i].querySelector("p").classList.remove("nondisplay");
+      faqItems[i].querySelector("p").classList.add("display");
+    } else {
+      faqItems[i].querySelector("p").classList.add("nondisplay");
+      faqItems[i].querySelector("p").classList.remove("display");
+    }
+    //window.localStorage.setItem("faqContainer", faqContainer.innerHTML);
+  });
+}

@@ -22,6 +22,28 @@
         opacity: 1;
         transition: opacity 500ms linear;
       }
+
+      .slider div {
+        display: none;
+        //opacity: 0;
+      }
+
+      .slider div.active {
+        display: block;
+        //opacity: 1;
+        transition: opacity 500ms linear;
+      }
+
+      .faqItem h3 {
+        border: 1px solid black;
+      }
+
+      .display {
+        display: block;
+      }
+      .nondisplay {
+        display: none;
+      }
     </style>
   </head>
 
@@ -35,6 +57,44 @@
       <button type="submit" name="submit">Wyślij formularz</button>
     </form>
     <div class="results"></div>
+
+    <div class="slider">
+      <div class="active">1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+    </div>
+
+    <div class="faq">
+      <div class="faqItem">
+        <h3>Element 1</h3>
+        <p class="nondisplay">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur
+          sint accusantium vitae sunt culpa ullam unde, iure consectetur
+        </p>
+      </div>
+      <div class="faqItem">
+        <h3>Element 2</h3>
+        <p class="nondisplay">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur
+          sint accusantium vitae sunt culpa ullam unde, iure consectetur
+        </p>
+      </div>
+      <div class="faqItem">
+        <h3>Element 3</h3>
+        <p class="nondisplay">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur
+          sint accusantium vitae sunt culpa ullam unde, iure consectetur
+        </p>
+      </div>
+      <div class="faqItem">
+        <h3>Element 4</h3>
+        <p class="nondisplay">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur
+          sint accusantium vitae sunt culpa ullam unde, iure consectetur
+        </p>
+      </div>
+    </div>
     <script src="js/main.js"></script>
   </body>
 </html>
